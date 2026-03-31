@@ -1,8 +1,8 @@
 import { createClient } from '@/lib/supabase/server'
 import { redirect } from 'next/navigation'
 
+
 export default async function LandingPage() {
-  // Server-side: if already logged in, redirect to dashboard
   const supabase = await createClient()
   const {
     data: { user },
@@ -69,14 +69,15 @@ export default async function LandingPage() {
   )
 }
 
+
 function SignInWithGoogle() {
   async function signIn() {
     'use server'
     const supabase = await createClient()
+
     const { data, error } = await supabase.auth.signInWithOAuth({
       provider: 'google',
       options: {
-        redirectTo: 'https://studentlifemanager.netlify.app/auth/callback',
         queryParams: {
           access_type: 'offline',
           prompt: 'select_account',
@@ -84,12 +85,12 @@ function SignInWithGoogle() {
       },
     })
 
-    if (data.url) {
-      redirect(data.url)
-    }
     if (error) {
       redirect('/?error=auth')
     }
+
+    // ✅ This redirect works because we're returning the URL to browser
+    redirect(data.url)
   }
 
   return (
