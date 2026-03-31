@@ -71,7 +71,7 @@ export default async function LandingPage() {
 
 function SignInWithGoogle() {
   async function signIn() {
-    'use server'
+    'use client'
     const supabase = await createClient()
     const { data, error } = await supabase.auth.signInWithOAuth({
       provider: 'google',
