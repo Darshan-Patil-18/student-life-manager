@@ -79,7 +79,7 @@ function SignInWithGoogle() {
         redirectTo: 'https://studentlifemanager.netlify.app/auth/callback',
         queryParams: {
           access_type: 'offline',
-          prompt: 'consent',
+          prompt: 'select_account',
         },
       },
     })
