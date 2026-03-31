@@ -78,6 +78,7 @@ function SignInWithGoogle() {
     const { data, error } = await supabase.auth.signInWithOAuth({
       provider: 'google',
       options: {
+        redirectTo: `https://studentlifemanager.netlify.app/auth/callback`,
         queryParams: {
           access_type: 'offline',
           prompt: 'select_account',
